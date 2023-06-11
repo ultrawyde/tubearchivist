@@ -79,7 +79,10 @@ class Parser:
 
     def _find_valid_id(self, id_str):
         """detect valid id from length of string"""
-        if id_str in ("LL", "WL"):
+        """Set prefix list for Watch Later, Liked videos, and Favorite videos playlists"""
+        private_lists=["WL", "LL", "FL"]
+        """Check if ID starts with appropriate prefixes above"""
+        if id_str.startswith(tuple(private_lists)):
             return {"type": "playlist", "url": id_str}
 
         if id_str.startswith("@"):
